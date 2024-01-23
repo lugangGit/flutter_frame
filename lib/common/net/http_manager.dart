@@ -6,6 +6,7 @@ import 'package:dio/src/response.dart' as d;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_frame/common/utils/stroage_manager.dart';
 import '../../utils.dart';
+import '../utils/device_util.dart';
 import '../utils/event_bus_utils.dart';
 import 'hy_response.dart';
 import 'interceptor/cache.dart';
@@ -64,14 +65,33 @@ class HttpManager {
       baseUrl: baseUrl,
       connectTimeout: connectTimeout,
       receiveTimeout: receiveTimeout,
-      headers: headers ?? const {},
+      headers: headers ?? const {
+        "Authorization": ""
+      },
     );
     if (interceptors != null && interceptors.isNotEmpty) {
       dio.interceptors.addAll(interceptors);
     }
 
     var interceptorsWrapper = InterceptorsWrapper(onRequest:
-        (RequestOptions options, RequestInterceptorHandler handler) {
+        (RequestOptions options, RequestInterceptorHandler handler) async {
+      /// 公共参数
+      var queryParameters = options.queryParameters;
+      var version = await DeviceUtil.appVersion();
+      var deviceId = await DeviceUtil.deviceId();
+      var deviceInfo = await DeviceUtil.systemVersion();
+      queryParameters['appVersion'] = version;
+      queryParameters['curVersions'] = 2;
+      queryParameters['appID'] = 1;
+      queryParameters['siteId'] = 1;
+      queryParameters["longitude"] = 0;
+      queryParameters["latitude"] = 0;
+      if(options.path != "tipoff") {///报料接口特殊处理 这里无需传location
+        queryParameters["location"] = "";
+      }
+      queryParameters['device'] = deviceId;
+      queryParameters['deviceInfo'] = Platform.isIOS ? "iOS$deviceInfo" : "Android$deviceInfo";
+
       try {
         _print("┌───────────────请求数据开始─────────────── \n");
         _print("│method = ${options.method.toString()}");
@@ -89,13 +109,17 @@ class HttpManager {
       _print("┌────────────────开始响应──────────────────\n");
       _print("│url  = ${response.realUri.toString()}\n");
       _print("│code = ${response.statusCode}");
+      Map<String, dynamic> result = {};
+
       if (response.data is ResponseBody) {
 
       } else {
         _print("│data = ${json.encode(response.data ?? '')}");
+        result = json.decode(response.data);
+        response.data = result;
       }
 
-      int code = response.data['code'];
+      int code = response.data['status'];
       if (code == -1) {
         _print('===需要登录===');
         EventBusUtils.getInstance()?.fire('NeedLoginEvent');

@@ -4,13 +4,14 @@ import 'package:flutter_frame/root_page.dart';
 import 'business/agreement/agreement_page.dart';
 import 'lang/translation_service.dart';
 import 'utils.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 初始化request类
-  HttpUtils.init(
+  /// 初始化request类
+  Http.init(
     baseUrl: Api.baseUrl,
   );
 
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
       translations: TranslationService(),
       locale: UserRecordManager.getLocale() ?? TranslationService.locale,
       fallbackLocale: TranslationService.fallbackLocale,
+      supportedLocales: TranslationService.supportedLocales,
       theme: ThemeData(
           fontFamily: 'PingFangSC',
           useMaterial3: true,
@@ -50,12 +52,11 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.blue[100]
       ),
       themeMode: UserRecordManager.getThemeMode(),
-      // supportedLocales: IMKitClient.supportedLocales,
-      // localizationsDelegates: [
-      //   DefaultMaterialLocalizations.delegate,
-      //   DefaultWidgetsLocalizations.delegate,
-      //   ChatKitClient.delegate,
-      // ],
+      localizationsDelegates: const [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
       // home: GestureDetector(

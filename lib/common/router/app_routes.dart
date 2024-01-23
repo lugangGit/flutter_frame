@@ -12,7 +12,7 @@ abstract class Routes {
   static const root = _Paths.root;
   static const agreement = _Paths.agreement;
   static const login = _Paths.login;
-  static const darkModel = _Paths.darkModel;
+  static const themeModel = _Paths.themeModel;
 
   Routes._();
   static String LOGIN_THEN(String afterSuccessfulLogin) =>
@@ -30,5 +30,5 @@ abstract class _Paths {
   static const login = '/login';
   static const dashboard = '/dashboard';
   static const agreement = '/agreement';
-  static const darkModel = '/darkModel';
+  static const themeModel = '/themeModel';
 }

@@ -15,7 +15,8 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [HomePage(), MinePage()];
+  final List<Widget> _pages = [HomePage(), MinePage(showAppBar: true,)];
+  final PageController _controller = PageController(initialPage: 0);
 
   final Color _selectedColor = const Color(0xFF237CF4);
   final Color _unSelectedColor = const Color(0xFF959AAF);
@@ -45,7 +46,12 @@ class _RootPageState extends State<RootPage> {
         final ThemeData themeData = Theme.of(context);
         return Scaffold(
           backgroundColor: const Color(0xFFF8F9FA),
-          body: _pages[_currentIndex],
+          body: PageView(
+            controller: _controller,
+            physics: const NeverScrollableScrollPhysics(),
+            children: _pages,
+            // 页面左右滚动触发的函数
+          ),
           bottomNavigationBar: Theme(
             data: ThemeData(
               brightness: Brightness.light,
@@ -57,6 +63,7 @@ class _RootPageState extends State<RootPage> {
                 setState(() {
                   _currentIndex = index;
                 });
+                _controller.jumpToPage(_currentIndex);
               },
               selectedFontSize: 10.0.sp,
               unselectedFontSize: 10.0.sp,

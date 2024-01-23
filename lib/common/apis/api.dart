@@ -2,7 +2,7 @@ class Api {
   /// 正式环境
   // static const String baseUrl = "https://api.ddcat.shop?s=/api";
   /// 测试环境
-  static const String baseUrl = "https://wan.ddcat.shop?s=/api";
+  static const String baseUrl = "https://api.xiancn.com/xafb/";
 
   //===用户相关===
   static const String Sms_Code = '/user/send_code';

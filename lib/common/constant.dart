@@ -53,8 +53,11 @@ class ImageName {
   static const String brand = "assets/images/tabbar/brand.svg";
 
 
-  /// 主页底部Tab标签默认占位图 - 首页
+  ///主页底部Tab标签默认占位图 - 首页
   static const String navBack = "assets/images/common/nav_back.svg";
+
+  ///loading
+  static const String pageLoading = "assets/images/common/page_loading.gif";
 }
 
 class SharedPreferenceKey {

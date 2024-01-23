@@ -13,5 +13,13 @@ class NetworkUtil{
     }
     return false;
   }
+
+  static Future<bool> isMobile() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile){
+      return true;
+    }
+    return false;
+  }
 }
 

@@ -1,5 +1,5 @@
 import 'package:flutter_frame/business/agreement/agreement_page.dart';
-import 'package:flutter_frame/business/dark_model/dark_model_page.dart';
+import 'package:flutter_frame/business/theme_model/theme_model_page.dart';
 import 'package:flutter_frame/root_page.dart';
 import 'package:flutter_frame/utils.dart';
 import 'package:get/get.dart';
@@ -23,8 +23,8 @@ class AppPages {
       transition: Transition.downToUp,
     ),
     GetPage(
-      name: _Paths.darkModel,
-      page: () =>  DarkModelPage(),
+      name: _Paths.themeModel,
+      page: () =>  ThemeModelPage(),
       // transition: Transition.downToUp,
     ),
   ];

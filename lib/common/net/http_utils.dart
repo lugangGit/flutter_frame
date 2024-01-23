@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'hy_response.dart';
 import 'interceptor/cache.dart';
 
-class HttpUtils {
+class Http {
   static void init({
     required String baseUrl,
     Duration connectTimeout = const Duration(seconds: 15),
