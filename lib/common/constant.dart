@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_frame/utils.dart';
 
 class Constant {
 
@@ -61,9 +62,28 @@ class ImageName {
 }
 
 class SharedPreferenceKey {
-  static const String agreedPrivacy = "agreedPrivacy";
-  static const String nightMode = "nightMode";
-  static const String locale = "locale";
+  static const String agreedPrivacy = "kAgreedPrivacy";
+  static const String firstEntry = "kFirstEntry";
+  static const String nightMode = "kNightMode";
+  static const String locale = "kLocale";
 
 }
+
+
+class Dimens {
+  static final double font10 = 10.sp;
+  static final double font12 = 12.sp;
+  static final double font14 = 14.sp;
+  static final double font16 = 16.sp;
+  static final double font18 = 18.sp;
+
+  static final double gap5 = 5.w;
+  static final double gap10 = 10.w;
+  static final double gap12 = 12.w;
+  static final double gap15 = 15.w;
+  static final double gap16 = 16.w;
+}
+
+
+
 

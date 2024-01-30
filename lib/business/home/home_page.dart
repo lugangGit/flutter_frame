@@ -14,6 +14,45 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     controller.context = context;
 
+    Widget buildContent() {
+      return ListView(
+        children: [
+          SizedBox(height: 15.w),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.themeModel, arguments: {"isEdit": false} );
+              // Get.to(() => ThemeModelPage(), arguments: {"isEdit": false});
+            },
+            child: Container(
+              alignment: Alignment.center,
+              width: 200,
+              height: 40,
+              color: AppColor.primary.of(context),
+              child: Text('darkModel'.tr, style: TextStyle(color: AppColor.text1.of(context))),
+            ),
+          ),
+          SizedBox(height: 15.w),
+          GestureDetector(
+            onTap: () {
+              var locale = UserRecordManager.getLocale();
+              if (locale?.countryCode == "CN") {
+                UserRecordManager.setLocale('en', 'US');
+              }else {
+                UserRecordManager.setLocale('zh', 'CN');
+              }
+            },
+            child: Container(
+              alignment: Alignment.center,
+              width: 200,
+              height: 40,
+              color: AppColor.primary.of(context),
+              child: Text('language'.tr, style: TextStyle(color: AppColor.text1.of(context))),
+            ),
+          ),
+        ],
+      );
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
@@ -24,95 +63,63 @@ class HomePage extends StatelessWidget {
       ),
       body: GetBuilder<HomeController>(
         builder: (controller) {
-          if (!controller.list.isEmpty) {
-            return const Center(
-              child: Text('暂无内容'),
+          if (controller.isEmpty) {
+            return XyViewStatePlaceholder(
+              controller,
+              onTapRetry: () {
+                controller.loadData();
+              },
             );
-          } else {
-            return EasyRefresh(
-                controller: controller.easyRefreshController,
-                refreshOnStart: false,
-                refreshOnStartHeader: BuilderHeader(
-                  triggerOffset: 70,
-                  clamping: true,
-                  position: IndicatorPosition.above,
-                  processedDuration: Duration.zero,
-                  builder: (ctx, state) {
-                    if (state.mode == IndicatorMode.inactive ||
-                        state.mode == IndicatorMode.done) {
-                      return const SizedBox();
-                    }
-                    return Container(
-                      padding: EdgeInsets.only(bottom: 100.w),
-                      width: ScreenUtil().screenWidth,
-                      height: state.viewportDimension,
-                      alignment: Alignment.center,
-                      child: Container(color: Colors.yellow, width: 50.w, height: 50.w,),
-                    );
-                  },
-                ),
-                header: const ClassicHeader(
-                    dragText: '下拉刷新',
-                    armedText: '释放刷新',
-                    readyText: '正在刷新...',
-                    processedText: '刷新完成',
-                    failedText: '刷新失败',
-                    messageText: '更新时间 %T'
-                ),
-                footer: ClassicFooter(
-                    dragText: '上拉加载',
-                    armedText: '释放加载',
-                    readyText: '加载中...',
-                    processedText: '加载完成',
-                    failedText: '加载失败',
-                    messageText: '更新时间 %T',
-                    noMoreText: "暂无更多",
-                    showMessage: false,
-                    noMoreIcon: Container(width: 20, height: 20, color: Colors.yellow,)
-                ),
-                onRefresh: () async {
-                  controller.onRefresh();
-                },
-                onLoad: () async {
-                  controller.loadMore();
-                },
-                child: ListView(
-                  children: [
-                    SizedBox(height: 15.w),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.themeModel, arguments: {"isEdit": false} );
-                        // Get.to(() => ThemeModelPage(), arguments: {"isEdit": false});
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: 200,
-                        height: 40,
-                        color: AppColor.primary.of(context),
-                        child: Text('darkModel'.tr, style: TextStyle(color: AppColor.text1.of(context))),
-                      ),
-                    ),
-                    SizedBox(height: 15.w),
-                    GestureDetector(
-                      onTap: () {
-                        var locale = UserRecordManager.getLocale();
-                        if (locale?.countryCode == "CN") {
-                          UserRecordManager.setLocale('en', 'US');
-                        }else {
-                          UserRecordManager.setLocale('zh', 'CN');
-                        }
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: 200,
-                        height: 40,
-                        color: AppColor.primary.of(context),
-                        child: Text('language'.tr, style: TextStyle(color: AppColor.text1.of(context))),
-                      ),
-                    ),
-                  ],
-                ));
           }
+          return EasyRefresh(
+              controller: controller.easyRefreshController,
+              refreshOnStart: false,
+              refreshOnStartHeader: BuilderHeader(
+                triggerOffset: 70,
+                clamping: true,
+                position: IndicatorPosition.above,
+                processedDuration: Duration.zero,
+                builder: (ctx, state) {
+                  if (state.mode == IndicatorMode.inactive ||
+                      state.mode == IndicatorMode.done) {
+                    return const SizedBox();
+                  }
+                  return Container(
+                    padding: EdgeInsets.only(bottom: 100.w),
+                    width: ScreenUtil().screenWidth,
+                    height: state.viewportDimension,
+                    alignment: Alignment.center,
+                    child: Container(color: Colors.yellow, width: 50.w, height: 50.w,),
+                  );
+                },
+              ),
+              header: const ClassicHeader(
+                  dragText: '下拉刷新',
+                  armedText: '释放刷新',
+                  readyText: '正在刷新...',
+                  processedText: '刷新完成',
+                  failedText: '刷新失败',
+                  messageText: '更新时间 %T'
+              ),
+              footer: ClassicFooter(
+                  dragText: '上拉加载',
+                  armedText: '释放加载',
+                  readyText: '加载中...',
+                  processedText: '加载完成',
+                  failedText: '加载失败',
+                  messageText: '更新时间 %T',
+                  noMoreText: "暂无更多",
+                  showMessage: false,
+                  noMoreIcon: Container(width: 20, height: 20, color: Colors.yellow,)
+              ),
+              onRefresh: () async {
+                controller.refresh();
+              },
+              onLoad: () async {
+                controller.loadMore();
+              },
+              child: buildContent()
+          );
         },
       ),
     );

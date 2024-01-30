@@ -302,8 +302,8 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @protocol FlutterPluginRegistrar;
 @class FlutterMethodCall;
 
-SWIFT_CLASS("_TtC12flutter_udid22SwiftFlutterUdidPlugin")
-@interface SwiftFlutterUdidPlugin : NSObject <FlutterPlugin>
+SWIFT_CLASS("_TtC12flutter_udid17FlutterUdidPlugin")
+@interface FlutterUdidPlugin : NSObject <FlutterPlugin>
 + (void)registerWithRegistrar:(id <FlutterPluginRegistrar> _Nonnull)registrar;
 - (void)handleMethodCall:(FlutterMethodCall * _Nonnull)call result:(FlutterResult _Nonnull)result;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -621,8 +621,8 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @protocol FlutterPluginRegistrar;
 @class FlutterMethodCall;
 
-SWIFT_CLASS("_TtC12flutter_udid22SwiftFlutterUdidPlugin")
-@interface SwiftFlutterUdidPlugin : NSObject <FlutterPlugin>
+SWIFT_CLASS("_TtC12flutter_udid17FlutterUdidPlugin")
+@interface FlutterUdidPlugin : NSObject <FlutterPlugin>
 + (void)registerWithRegistrar:(id <FlutterPluginRegistrar> _Nonnull)registrar;
 - (void)handleMethodCall:(FlutterMethodCall * _Nonnull)call result:(FlutterResult _Nonnull)result;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;

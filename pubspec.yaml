@@ -35,31 +35,59 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  # GetX
   get: ^4.6.6
+  # 加载loading
   flutter_easyloading: ^3.0.5
+  # 本地存储 storage.setItem('todos', list.toJSONEncodable());
   localstorage: ^4.0.1+4
+  # 本地存储 Supported data types are int, double, bool, String and List<String> prefs.setBool('repeat', true);
   shared_preferences: ^2.2.2
+  # 沙盒路径
   path_provider: ^2.1.1
+  # 屏幕适配方案 fontSize: 30.sp .w .h
   flutter_screenutil: ^5.9.0
+  # svg格式图片
   flutter_svg: ^2.0.9
+  # 网络图片
   cached_network_image: ^3.2.3
+  # 刷新
   easy_refresh: ^3.3.2+1
+  # 通知
   event_bus: ^2.0.0
+  # 网络请求
   dio: ^5.3.2
+  # 相册
   photo_manager: ^2.4.0
+  # 相机
   image_picker: ^1.0.4
+  # 判断网络
   connectivity_plus: ^4.0.2
+  # 提示框
   fluttertoast: ^8.2.4
-  package_info_plus: ^4.2.0
+  # 获取设备标识udid
   flutter_udid: ^2.0.1
+  # app包信息
+  package_info_plus: ^4.2.0
+  # 手机设备信息
   device_info_plus: ^9.1.0
+  # add empty space between widgets inside a Column or a Row const Gap(20)
   gap: ^3.0.1
+  # nested_scroll_view扩展
   extended_nested_scroll_view: ^6.1.2
+  # encode
   convert: ^3.1.1
+  # 轮播图
   carousel_slider: ^4.2.1
+  # 国际化
   flutter_localizations:
     sdk: flutter
+  # 状态管理
   provider: ^6.1.1
+  # 日期，正则，倒计时，时间轴等工具类
+  common_utils: ^2.1.0
+  # 打开外链
+  url_launcher: ^6.2.4
 
 dev_dependencies:
   flutter_test:

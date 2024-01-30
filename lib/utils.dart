@@ -34,5 +34,6 @@ export 'package:flutter_svg/flutter_svg.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:easy_refresh/easy_refresh.dart';
 export 'package:provider/provider.dart';
+export 'package:common_utils/common_utils.dart';
 
 

@@ -13,6 +13,7 @@ abstract class Routes {
   static const agreement = _Paths.agreement;
   static const login = _Paths.login;
   static const themeModel = _Paths.themeModel;
+  static const guideView = _Paths.guideView;
 
   Routes._();
   static String LOGIN_THEN(String afterSuccessfulLogin) =>
@@ -30,5 +31,6 @@ abstract class _Paths {
   static const login = '/login';
   static const dashboard = '/dashboard';
   static const agreement = '/agreement';
+  static const guideView = '/guideView';
   static const themeModel = '/themeModel';
 }

@@ -6,11 +6,34 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		VGZ1+g3PLO5jv0OZjv1Je+4FtRc=
+		LsZdDnJIGF1nbzyadPm9Qul4R0A=
+		</data>
+		<key>sqflite_darwin_privacy.bundle/Info.plist</key>
+		<data>
+		jupTpqkQEr+j54+6PfZ6TA1ums8=
+		</data>
+		<key>sqflite_darwin_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		YIiJ5tHvqBeSpBm2mcfVZdaGz3E=
 		</data>
 	</dict>
 	<key>files2</key>
-	<dict/>
+	<dict>
+		<key>sqflite_darwin_privacy.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			En6ufowk0dsMET8hYKMpvh5012P+xZKlHyF8ml2YOIU=
+			</data>
+		</dict>
+		<key>sqflite_darwin_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RyJqKWCN8gatChEOav61p3/1dawd+cdr/bLW37P6/tE=
+			</data>
+		</dict>
+	</dict>
 	<key>rules</key>
 	<dict>
 		<key>^.*</key>

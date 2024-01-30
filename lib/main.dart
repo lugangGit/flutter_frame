@@ -32,41 +32,44 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: true,
-      title: '万元宝',
-      translations: TranslationService(),
-      locale: UserRecordManager.getLocale() ?? TranslationService.locale,
-      fallbackLocale: TranslationService.fallbackLocale,
-      supportedLocales: TranslationService.supportedLocales,
-      theme: ThemeData(
-          fontFamily: 'PingFangSC',
-          useMaterial3: true,
-          brightness: Brightness.light,
-          primaryColor: Colors.blue
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: true,
+        title: '万元宝',
+        translations: TranslationService(),
+        locale: UserRecordManager.getLocale() ?? TranslationService.locale,
+        fallbackLocale: TranslationService.fallbackLocale,
+        supportedLocales: TranslationService.supportedLocales,
+        theme: ThemeData(
+            fontFamily: 'PingFangSC',
+            useMaterial3: true,
+            brightness: Brightness.light,
+            primaryColor: Colors.blue
+        ),
+        darkTheme: ThemeData(
+            fontFamily: 'PingFangSC',
+            useMaterial3: true,
+            brightness: Brightness.dark,
+            primaryColor: Colors.blue[100]
+        ),
+        themeMode: UserRecordManager.getThemeMode(),
+        localizationsDelegates: const [
+          GlobalCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        initialRoute: AppPages.initial(),
+        getPages: AppPages.routes,
+        // home: GestureDetector(
+        //   onTap: () {
+        //     print('点击空白处');
+        //     hideKeyboard(context);
+        //   },
+        //   child: spUtil.getBool("agreedPrivacy") == true ? const RootPage() : AgreementPage(),
+        // ),
+        builder: EasyLoading.init(),
       ),
-      darkTheme: ThemeData(
-          fontFamily: 'PingFangSC',
-          useMaterial3: true,
-          brightness: Brightness.dark,
-          primaryColor: Colors.blue[100]
-      ),
-      themeMode: UserRecordManager.getThemeMode(),
-      localizationsDelegates: const [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      initialRoute: AppPages.initial,
-      getPages: AppPages.routes,
-      // home: GestureDetector(
-      //   onTap: () {
-      //     print('点击空白处');
-      //     hideKeyboard(context);
-      //   },
-      //   child: spUtil.getBool("agreedPrivacy") == true ? const RootPage() : AgreementPage(),
-      // ),
-      builder: EasyLoading.init(),
     );
   }
 }

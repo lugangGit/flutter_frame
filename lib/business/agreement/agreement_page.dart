@@ -4,6 +4,8 @@ import 'package:flutter_frame/common/widgets/agreement_dialog.dart';
 import 'package:get/get.dart';
 import 'package:flutter_frame/utils.dart';
 
+import 'app_sdk_manager.dart';
+
 ///隐私授权页面
 class AgreementPage extends StatefulWidget {
   const AgreementPage({Key? key}) : super(key: key);
@@ -29,7 +31,7 @@ class _AgreementPageState extends State<AgreementPage> {
 
   void _onTapAgreeAgreement() async {
     StorageManager.sharedPreferences.setBool(SharedPreferenceKey.agreedPrivacy, true);
-    // AppSdkManager.initSdks();
+    AppSdkManager.initSdks();
     Get.offNamed('/?id=123', preventDuplicates: false);
   }
 

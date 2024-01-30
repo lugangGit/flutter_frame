@@ -1,16 +1,18 @@
 # flutter_frame
 
-A new Flutter project.
+快速构建基于Flutter3.16.0的MVVM框架项目，开发一些常用工具，代码比较规范。
 
-## Getting Started
+包括：
+dio网络层
+router路由层
+状态管理（GetX、provider）
+Base基类
+暗黑模式
+国际化
+引导页
+隐私弹框
+登录及登录状态 待开发
+第三方推送、分享 待开发
+...
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+有时间就会尝试开发更新项目中常用的功能...

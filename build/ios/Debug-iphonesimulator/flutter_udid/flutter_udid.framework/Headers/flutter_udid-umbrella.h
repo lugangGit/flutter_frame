@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "FlutterUdidPlugin.h"
 
 FOUNDATION_EXPORT double flutter_udidVersionNumber;
 FOUNDATION_EXPORT const unsigned char flutter_udidVersionString[];

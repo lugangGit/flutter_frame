@@ -8,13 +8,13 @@ class HomeController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    var arguments = Get.arguments;
     Get.printInfo(info: 'home: onInit');
   }
 
   @override
   void onReady() {
     super.onReady();
-    loadData();
     Get.printInfo(info: 'home: onReady');
   }
 
@@ -26,7 +26,9 @@ class HomeController extends BaseController {
 
   @override
   Future<List> loadData({int pageNum = 0}) async {
-    return [];
+    await Future.delayed(const Duration(seconds: 10));
+    List test = [1,2];
+    return test;
   }
 
 }

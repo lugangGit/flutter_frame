@@ -4,12 +4,17 @@ import '../../utils.dart';
 class AppSdkManager {
   ///初始化各种第三方SDK， 用户不同意隐私协议之前不初始化，同意之后再初始化
   static initSdks() {
-    if (StorageManager.sharedPreferences.getBool("agreedPrivacy") != true) {
+    if (StorageManager.sharedPreferences.getBool(SharedPreferenceKey.agreedPrivacy) != true) {
       return;
     }
-    //_initShareSDk();
-    _initFluwx();
-    _initIMPlugin();
+
+    try {
+      //_initShareSDk();
+      _initFluwx();
+      _initIMPlugin();
+    }catch(e) {
+      LogUtil.d(e);
+    }
   }
 
   /// 初始化网易云信SDK

@@ -7,7 +7,8 @@ import '../../constant.dart';
 class XyViewStatePlaceholder extends ViewStatePlaceholder {
   final Color? color;
   XyViewStatePlaceholder(
-      ViewStateModel model, {
+      dynamic model,
+      {super.key,
         VoidCallback? onTapRetry,
         WidgetBuilder? emptyBuild,
         WidgetBuilder? contentErrorBuild,

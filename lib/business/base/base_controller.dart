@@ -1,8 +1,9 @@
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/Material.dart';
 import 'package:get/get.dart';
+import 'base_state.dart';
 
-abstract class BaseController<T> extends GetxController {
+abstract class BaseController<T> extends GetxController with BaseState {
   late BuildContext context;
 
   /// 分页第一页页码
@@ -25,15 +26,18 @@ abstract class BaseController<T> extends GetxController {
   IndicatorResult? get indicatorResult => _indicatorResult;
 
   List<T> list = [];
+  bool get isEmpty => list.isEmpty;
 
   EasyRefreshController easyRefreshController = EasyRefreshController(
     controlFinishRefresh: true,
     controlFinishLoad: true,
   );
 
+
   @override
   void onInit() {
     super.onInit();
+    initData();
     Get.printInfo(info: 'onInit');
   }
 
@@ -47,6 +51,12 @@ abstract class BaseController<T> extends GetxController {
   void onClose() {
     super.onClose();
     Get.printInfo(info: 'onClose');
+  }
+
+  /// 第一次进入页面loading skeleton
+  initData() async {
+    setBusy();
+    await onRefresh(init: true);
   }
 
   /// 下拉刷新
@@ -63,6 +73,7 @@ abstract class BaseController<T> extends GetxController {
         easyRefreshController.finishRefresh(IndicatorResult.none);
         easyRefreshController.finishLoad(IndicatorResult.none, true );
         list.clear();
+        setEmpty();
         update();
       } else {
         onCompleted(data);
@@ -77,6 +88,7 @@ abstract class BaseController<T> extends GetxController {
           //防止上次上拉加载更多失败,需要重置状态
           easyRefreshController.resetHeader();
         }
+        setIdle();
         update();
       }
       return data;
@@ -84,6 +96,7 @@ abstract class BaseController<T> extends GetxController {
       /// 页面已经加载了数据,如果刷新报错,不应该直接跳转错误页面
       /// 而是显示之前的页面数据.给出错误提示
       if (init) list.clear();
+      setError(e, s);
       _indicatorResult = IndicatorResult.fail;
       easyRefreshController.finishRefresh(IndicatorResult.fail);
       update();

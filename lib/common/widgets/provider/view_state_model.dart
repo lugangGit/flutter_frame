@@ -75,7 +75,7 @@ class ViewStateModel with ChangeNotifier {
   /// [e]分类Error和Exception两种
   void setError(e, stackTrace, {String? message}) {
     ErrorType errorType = ErrorType.defaultError;
-    if (e is DioError) {
+    if (e is DioException) {
       e = e.error;
       if (e is UnAuthorizedException) {
         stackTrace = null;
@@ -131,43 +131,3 @@ class ViewStateModel with ChangeNotifier {
     super.dispose();
   }
 }
-
-/// [e]为错误类型 :可能为 Error , Exception ,String
-/// [s]为堆栈信息
-printErrorStack(e, s) {
-//   LogUtil.e('''
-// <-----↓↓↓↓↓↓↓↓↓↓-----error-----↓↓↓↓↓↓↓↓↓↓----->
-// $e
-// <-----↑↑↑↑↑↑↑↑↑↑-----error-----↑↑↑↑↑↑↑↑↑↑----->''');
-//   if (s != null) LogUtil.e('''
-// <-----↓↓↓↓↓↓↓↓↓↓-----trace-----↓↓↓↓↓↓↓↓↓↓----->
-// $s
-// <-----↑↑↑↑↑↑↑↑↑↑-----trace-----↑↑↑↑↑↑↑↑↑↑----->
-//     ''');
-}
-
-/// 接口的code没有返回为true的异常
-class NotSuccessException implements Exception {
-  String? message;
-  HYResponse? data;
-
-  NotSuccessException({this.message, this.data});
-
-  NotSuccessException.fromRespData(HYResponse respData) {
-    data = respData;
-    message = respData.message;
-  }
-//  @override
-//  String toString() {
-//    return 'NotExpectedException{respData: $message}';
-//  }
-}
-
-/// 用于未登录等权限不够,需要跳转授权页面
-class UnAuthorizedException implements Exception {
-  const UnAuthorizedException();
-
-  @override
-  String toString() => 'UnAuthorizedException';
-}
-
