@@ -24,6 +24,7 @@ export 'common/utils/app_color.dart';
 export 'common/utils/toast_util.dart';
 export 'common/constant.dart';
 export 'package:flutter_frame/common/user/user_record_manager.dart';
+export 'package:flutter_frame/common/user/user_model.dart';
 
 
 ///常用三方库

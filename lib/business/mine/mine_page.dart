@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_frame/business/mine/setting/setting_page.dart';
 import 'package:get/get.dart';
 import '../../utils.dart';
 import 'mine_controller.dart';
@@ -18,7 +19,7 @@ class _MinePageState extends BasePageState<MinePage> with AutomaticKeepAliveClie
   bool get wantKeepAlive => true;
 
   @override
-  String? get title => "测试";
+  String? get title => "mine".tr;
 
   @override
   void initState() {
@@ -97,8 +98,15 @@ class _MinePageState extends BasePageState<MinePage> with AutomaticKeepAliveClie
           onLoad: () async {
             viewModel.loadMore();
           },
-          child: ListView(
-            children: children,
+          child: GestureDetector(
+            onTap: () {
+              if (UserModel.shared.isLogin) {
+                Get.to(const SettingPage(showAppBar: true,));
+              }
+            },
+            child:ListView(
+              children: children,
+            ) ,
           ));
     }
 

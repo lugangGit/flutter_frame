@@ -8,5 +8,8 @@ const Map<String, String> zh_CN = {
   'language': "语言设置",
   'nightModel': "夜间模式",
   'lightModel': "浅色模式",
-  'followSystem': "跟随系统"
+  'followSystem': "跟随系统",
+  'setting': "设置",
+  'login': "模拟登录",
+  'switchDomain': "切换环境",
 };

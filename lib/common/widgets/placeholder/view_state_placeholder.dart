@@ -47,6 +47,7 @@ class ViewStatePlaceholder extends StatelessWidget {
             // title: Text((this.title ?? error?.message) ?? "",
             // buttonTextData: showRefreshTag ? FZTag(text:strings.refresh,config:AppTagStyle.highlightOutline) : null,
             // height: height,
+            title: const Text("网络加载出错"),
           );
         } else {
           placeholder = ViewStateWidget(
@@ -56,6 +57,7 @@ class ViewStatePlaceholder extends StatelessWidget {
             // title: Text((this.title ?? error?.message) ?? strings.pageError,style: AppTextStyle.bodySmall.of(context)),
             // buttonTextData: showRefreshTag ? FZTag(text:strings.refresh,config:AppTagStyle.highlightOutline) : null,
             // height: height,
+            title: const Text("页面加载出错"),
           );
         }
       } else {

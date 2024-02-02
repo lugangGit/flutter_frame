@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_frame/business/theme_model/theme_model_page.dart';
 import 'package:flutter_frame/common/user/user_record_manager.dart';
+import 'package:flutter_frame/common/utils/app_text_style.dart';
 import 'package:get/get.dart';
 import '../../utils.dart';
 import 'home_controller.dart';
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
               width: 200,
               height: 40,
               color: AppColor.primary.of(context),
-              child: Text('darkModel'.tr, style: TextStyle(color: AppColor.text1.of(context))),
+              child: Text('darkModel'.tr, style: AppTextStyle.title(context)),
             ),
           ),
           SizedBox(height: 15.w),
@@ -46,7 +47,43 @@ class HomePage extends StatelessWidget {
               width: 200,
               height: 40,
               color: AppColor.primary.of(context),
-              child: Text('language'.tr, style: TextStyle(color: AppColor.text1.of(context))),
+              child: Text('language'.tr, style: AppTextStyle.title(context)),
+            ),
+          ),
+          SizedBox(height: 15.w),
+          GestureDetector(
+            onTap: () async {
+              Map? appConfig = StorageManager.localStorage.getItem(AppLocalStorageKey.app);
+              if (appConfig == null) {
+                appConfig = {
+                  "isRelease": false,
+                  "baseUrl": "https://api.ddca.shop?s=/api/"
+                };
+              }else {
+                if (appConfig["isRelease"] == false) {
+                  appConfig = {
+                    "isRelease": true,
+                    "baseUrl": Api.baseUrl
+                  };
+                }else {
+                  appConfig = {
+                    "isRelease": false,
+                    "baseUrl": "https://api.ddca.shop?s=/api/"
+                  };
+                }
+              }
+              StorageManager.localStorage.setItem(AppLocalStorageKey.app, appConfig);
+              Http.reset(appConfig["baseUrl"]);
+              UserModel.clearUserAndLogin();
+              Get.offAllNamed(Routes.agreement);
+              ToastUtil.show(msg: "baseUrl: https://api.ddca.shop?s=/api/");
+            },
+            child: Container(
+              alignment: Alignment.center,
+              width: 200,
+              height: 40,
+              color: AppColor.primary.of(context),
+              child: Text('switchDomain'.tr, style: AppTextStyle.title(context)),
             ),
           ),
         ],
@@ -59,6 +96,13 @@ class HomePage extends StatelessWidget {
         backgroundColor: AppColor.primary.of(context),
         title: Text('home'.tr, style: TextStyle(color: Colors.white, fontSize: 17.w, fontWeight: FontWeight.w500)),
         centerTitle: true,
+        actions: [
+          Consumer<UserModel>(
+            builder: (context, userModel, child){
+              return userModel.isLogin ? Text(userModel.user?.nickname ?? "") : const SizedBox();
+            },
+          )
+        ],
         elevation: 0,
       ),
       body: GetBuilder<HomeController>(
@@ -113,7 +157,7 @@ class HomePage extends StatelessWidget {
                   noMoreIcon: Container(width: 20, height: 20, color: Colors.yellow,)
               ),
               onRefresh: () async {
-                controller.refresh();
+                controller.onRefresh();
               },
               onLoad: () async {
                 controller.loadMore();

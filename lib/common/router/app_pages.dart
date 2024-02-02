@@ -1,9 +1,9 @@
 import 'package:flutter_frame/business/agreement/agreement_page.dart';
+import 'package:flutter_frame/business/login/login/login_page.dart';
 import 'package:flutter_frame/business/theme_model/theme_model_page.dart';
 import 'package:flutter_frame/common/widgets/guide_view.dart';
 import 'package:flutter_frame/root_page.dart';
 import 'package:flutter_frame/utils.dart';
-import 'package:get/get.dart';
 part 'app_routes.dart';
 
 class AppPages {
@@ -40,6 +40,11 @@ class AppPages {
     GetPage(
       name: _Paths.themeModel,
       page: () =>  ThemeModelPage(),
+      // transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: _Paths.login,
+      page: () => LoginPage(),
       // transition: Transition.downToUp,
     ),
   ];

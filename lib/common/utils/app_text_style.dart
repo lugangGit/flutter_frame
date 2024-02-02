@@ -8,7 +8,7 @@ class AppTextStyle{
         color: AppColor.text2.of(context),
         fontSize: Dimens.font18,
         height: 1.2,
-        fontWeight: FontWeight.bold);
+        fontWeight: FontWeight.normal);
   }
 
   static TextStyle subTitle(BuildContext context) {

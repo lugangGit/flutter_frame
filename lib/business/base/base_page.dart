@@ -51,7 +51,7 @@ abstract class BasePageState<T extends BasePage> extends State<BasePage> {
   PreferredSizeWidget? buildAppBar(BuildContext context) => AppBar(
     backgroundColor: AppColor.primary.of(context),
     title: title != null ? Text(title!, style: TextStyle(color: Colors.white, fontSize: 17.w, fontWeight: FontWeight.w500)) : null,
-    leading: Navigator.canPop(context) ?  BackButton(color: AppColor.sub.of(context)) : null,
+    leading: ModalRoute.of(context)?.impliesAppBarDismissal ?? false  ? BackButton(color: AppColor.sub.of(context)) : null,
     // leading: IconButton(
     //   icon: SvgPicture.asset(
     //     ImageName.navBack,

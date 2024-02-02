@@ -9,7 +9,8 @@ const Map<String, String> en_US = {
   'language': "language",
   'nightModel': "night Model",
   'lightModel': "light Model",
-  'followSystem': "follow System"
-
-
+  'followSystem': "follow System",
+  'setting': "setting",
+  'login': "login",
+  'switchDomain': "switch domain names",
 };

@@ -33,7 +33,6 @@ abstract class BaseController<T> extends GetxController with BaseState {
     controlFinishLoad: true,
   );
 
-
   @override
   void onInit() {
     super.onInit();

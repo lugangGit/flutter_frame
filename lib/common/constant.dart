@@ -4,9 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_frame/utils.dart';
 
 class Constant {
+  static bool isRelease = false;
 
   ///appStore id
-  static String  iosAppId = "id1485873713";
+  static String iosAppId = "id1485873713";
 
   /// App运行在Release环境时，inProduction为true；当App运行在Debug和Profile环境时，inProduction为false
   static const bool inProduction = kReleaseMode;
@@ -61,12 +62,20 @@ class ImageName {
   static const String pageLoading = "assets/images/common/page_loading.gif";
 }
 
+
+///LocalStorageKey
+class AppLocalStorageKey {
+  static const String app = "kApp"; //App配置
+  static const String user = "kUser"; //用户
+}
+
+
 class SharedPreferenceKey {
   static const String agreedPrivacy = "kAgreedPrivacy";
   static const String firstEntry = "kFirstEntry";
   static const String nightMode = "kNightMode";
   static const String locale = "kLocale";
-
+  static const String userId = "kUserId";
 }
 
 
@@ -81,7 +90,7 @@ class Dimens {
   static final double gap10 = 10.w;
   static final double gap12 = 12.w;
   static final double gap15 = 15.w;
-  static final double gap16 = 16.w;
+  static final double gap20 = 20.w;
 }
 
 
